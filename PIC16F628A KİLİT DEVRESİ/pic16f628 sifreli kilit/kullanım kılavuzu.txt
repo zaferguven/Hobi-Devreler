@@ -1,0 +1,46 @@
+Devrenin Özellikleri Þunlardýr:
+
+1- Þifreleyici devre PIC16F628 ile yapýlmýþtýr. Montajý kolay ve maliyeti düþüktür.
+
+2- Bu devrede PIC16F628’in EEPROM hafýzasýný kullandým. Bundan dolayý yazdýðýmýz þifre PIC ’in besleme enerjisi kesildiðinde kaybolmaz.
+
+ÖNEMLÝ NOT : Devrenin +5v beslemesine anahtar baðlamayýn .Çünkü anahtara basýlma sýrasýnda kontak sýçramasý oluþur, buda PIC16F628’in EEPROM hafýzasýný etkiler.
+
+3- Yazdýðýmýz þifreyi defalarca deðiþtirebilir, 1 ile 10 haneli sayýlar yazabiliriz.
+
+4- Þifreyi sadece 3 defa yanlýþ girme hakkýmýz var. 3. defa yanlýþ girersek devre kilitlenir ve puk kodunun girilmesi gerekir. Puk kodu girildikten sonra þifre tekrar yenilenir. istenirse bu önlem RA7'ye baðlý anahtar ile iptal edilebilinir.
+
+5- program açýk unutulursa otomatik kapanýr.
+
+UYARI : PIC16F628’e kristal baðlamayýnýz. bu uygulamada PIC içindeki dahili osilatörü kullandým.
+
+KULLANMA KILAVUZU :
+
+1- Devreye ilk enerji verildiðinde RB6 ‘ya baðlý LED kýsa bir süre yanar ve söner.
+
+2- PIC ‘i ilk defa çalýþtýrýyorsanýz yani eeprom hafýza boþ ise RB7’ye baðlý yeni þifre yaz uyarý ledi Yanar. Bu sýrada kullanacaðýmýz þifreyi yazarýz. Yeni Þifreyi yazdýktan sonra [#] tuþuna basarýz.
+
+DÝKKAT: PIC hafýzasýna sadece en az 1, en fazla 10 haneli bir sayý yazabiliriz. 10 haneli sayý tamamlanýrsa buzzer sürekli ikaz verir. Bundan Sonra [#] tuþuna basýp þifre yazma iþi tamamlanýr.
+
+3- Kilidi açmak için önce [*] tuþuna basarýz. Sonra RB6'ya baðlý þifre gir LEDi sürekli yanar .Bu sýrada þifremizi gireriz .son olarak [#] ye basarýz. Þifre doðru girilmiþse RB0'a baðlý LED Yanar ve Röle enerjilenir. Þifre yanlýþsa RB5'e baðlý hata LEDi yanar ve geri söner.
+
+4- sisteme 3 defa yanlýþ þifre girildiyse Hata LEDi sürekli yanar. Bu durumda puk kodu girilir. bu özelliði kullanmak istemiyorsanýz RA7 pinine baðlý “hata kiliti iptal” anahtarýný sürekli olarak kýsadevre (kapalý) konumuna alýnýz. bu iþlemden sonra sýnýrsýz hatalý þifre girebilirsiniz.
+
+5- kilidi açtýktan sonra kapatmak veya þifreyi yazmaktan vazgeçmek için [*] tuþuna basýnýz. eðer kilitin otomatik olarak kapanmasýný istiyorsanýz RA6 pinine baðlý “otomatik kapan” anahtarýný sürekli kýsadevre (kapalý) konuma alýnýz. bundan sonra þifreyi her doðru giriþte kilit bir kaç saniye açýlýp tekrar kapanýr.
+
+6- PIC, [*] butonu ile baþla iþlemi yapýldýktan sonra 4 dakika çalýþýr ve otomatik olarak ana programa döner. her tuþa basmada bu süre yenilenir.
+
+PUK KODU:
+PUK Kodu 45 defa [1] tuþuna sonra [#] 10 defa [0] tuþuna ve [#] tuþuna basýlýp tamamlanýr. Bu kodu yanlýþ girerseniz Program açýlmaz.
+
+ÞÝFRE DEÐÝÞTÝRME:
+Þifre deðiþtirmek için önce eski þifre girilir ve kilit açýlýr. Sonra RA4’e baðlý þifre deðiþtir butonuna basýlýr. RB7 ‘ye baðlý LED yanýnca buton býrakýlýr . yeni þifre yazýlýp [#] tuþuna basýlýr.
+
+ÞÝFRE UNUTULURSA :
+Þifre unutulduðu zaman açmanýn sadece iki yolu var . Bunlar:
+
+1.yöntem: PIC 16F628'i programlama kartýna takýp okutursanýz girdiðiniz son þifre EEPROM veri kýsmýnda þifre görünür (EEADR 0……9 arasý). EEADR 11 de en son kaç haneli þifre girildiði kayýtlýdýr.
+
+2.yöntem: Þifre deðiþ butonu ile [5] tuþuna basýlý tutulur. Bir süre sonra RB5, RB6 LEDleri birlikte sürekli yanar ve puk kodu girilir. Daha sonra RB7 deki yeni þifre LEDi ýþýk verir ve diðer ledler söner. yeni þifre yazýlýp [#] tuþuna basýlýr .
+
+NOT: PUK KODUNU ASM DOSYASINDAN DEÐÝÞTÝREBÝLÝRSÝNÝZ ( KILIT ETÝKETÝNDEN SONRASINI ÝNCELEYÝN )

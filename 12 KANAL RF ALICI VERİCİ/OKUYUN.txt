@@ -1,0 +1,13 @@
+DEVREDE KULLANILAN RÖLELER 12V LUK TELEKOM RÖLE DÝR
+
+ALICI Model: RWS-371-6
+Frequency Range: 433.92MHz
+
+
+verici Transmitter Module : TWS-BS3 (433.92 MHz)
+Frequency Range: 433.92 MHz
+
+
+***********************************************
+NOT : ARES çizimi Proteus 7.9 ile çizilmiþtir.*
+***********************************************
